@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Genre, Book
 from .forms import CreateGenreForm, CreateBookForm
 import datetime
 from django.views.generic import TemplateView
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DetailView
 # Create your views here.
 
 def test(request):
@@ -41,3 +41,21 @@ class CreateBook(CreateView):
     form_class = CreateBookForm
     template_name = 'testapp/createbook.html'
     success_url = '/test'
+
+#class GenreDetailView(DetailView):
+
+
+class UpdateGenre(UpdateView):
+    model = Genre
+    form_class = CreateGenreForm
+    queryset = Genre.objects.all()
+    template_name = 'testapp/creategenre.html'
+    success_url = '/test'
+
+    def get_object(self):
+        id_ = self.kwargs.get('id')
+        return get_object_or_404(Genre, id=id_)
+    
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
