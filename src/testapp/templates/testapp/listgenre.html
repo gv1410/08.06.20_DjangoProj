@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listgenre</title>
+</head>
+<body>
+    <h1>Список жанров</h1>
+    <a href="/creategenre/">Create new genre</a><br>
+    <table border="1px" width="100%">
+
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>#</th>
+        </tr>
+        {%for obj in object_list%}
+        <tr>
+            <td>{{obj.pk}}</td>
+            <td>{{obj.name}}</td>
+            <td><a href="/{{obj.pk}}/update/">edit</a><br>
+                <a href="/{{obj.pk}}/deletegenre/">delete</a><br>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

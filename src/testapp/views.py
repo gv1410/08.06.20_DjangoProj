@@ -4,7 +4,7 @@ from .models import Genre, Book
 from .forms import CreateGenreForm, CreateBookForm
 import datetime
 from django.views.generic import TemplateView
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
 # Create your views here.
 
 def test(request):
@@ -59,3 +59,13 @@ class UpdateGenre(UpdateView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
+    
+class ListGenre(ListView):
+    model = Genre
+    template_name = 'testapp/listgenre.html'
+
+class DeleteGenre(DeleteView):
+    model = Genre
+    template_name = 'testapp/deletegenre.html'
+    success_url = '/test'
+    
