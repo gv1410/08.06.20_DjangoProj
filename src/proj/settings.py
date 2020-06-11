@@ -120,8 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/home/gv1410/new_proj/static'
+STATIC_ROOT = '/home/gv1410/new/static'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = '/home/gv1410/new_proj/media'
+MEDIA_ROOT = '/home/gv1410/new/media'
