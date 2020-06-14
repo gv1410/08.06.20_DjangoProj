@@ -126,5 +126,3 @@ STATIC_ROOT = '/home/gv1410/new_proj/static'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = '/home/gv1410/new_proj/media'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
