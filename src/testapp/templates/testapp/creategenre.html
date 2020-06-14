@@ -7,14 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}Создать жанр
-    {% endblock title %}Создать жанр
+    {% endblock title %}
 
 {% block body %}
+<div class="container">
  <form action="" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Создать">
     </form>
+</div>  
 {% endblock body %}
    
     
