@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}DeleteBook
+{% endblock title %}DeleteBook
+{% block body %}
     <h1>Delete Book: {{ object.name }} ?</h1>
     <form action="" method="post">
         {% csrf_token %}
         
         <input type="submit" value="УДАЛИТЬ">
     </form>
+{% endblock body %}
+
     
-</body>
-</html>
+    

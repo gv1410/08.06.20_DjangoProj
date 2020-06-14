@@ -1,22 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}TEST
+{% endblock title %}
+{% block body %}
+
+<h1> HOME PAGE</h><br>
+
+    <a href="http://127.0.0.1:8000/listgenre/"> ListGenre + Update + create + delete</a><br>
+    <a href="http://127.0.0.1:8000/listbook"> ListBook + Update + create + delete</a><br>
     
-    <a href="http://127.0.0.1:8000/creategenre/">Создать жанр?</a><br>
-    <a href="http://127.0.0.1:8000/createbook/">Создать книгу?</a><br>
-    <a href="http://127.0.0.1:8000/listgenre/">ЛИСТ ЖАНРОВ(create, update, delete)</a><br>
 
 
     <h1>GENRE</h1>
-     <table border = '1px'>
+     <table class="table">
+     <thead class="thead-dark">
      <tr>
      <th>pk</th><th>name</th><th>description</th>
-     </tr> 
+     </tr>
+     </thead>
      {% for genre in genre  %}
         <tr>
             <td>{{genre.pk}}</td><td>{{genre.name}}</td><td>{{genre.description}}</td>
@@ -26,10 +29,12 @@
      </table>
 
      <h1>BOOK</h1>
-     <table border = '1px'>
+     <table class="table">
+     <thead class="thead-dark">
      <tr>
      <th>pk</th><th>name</th><th>description</th><th>genre</th><th>created</th><th>updated</th>
      </tr> 
+     </thead>
      {% for book in books  %}
         <tr>
             <td>{{book.pk}}</td>
@@ -42,5 +47,4 @@
      {% endfor %}
      
      </table>
-</body>
-</html>
+{% endblock body %}

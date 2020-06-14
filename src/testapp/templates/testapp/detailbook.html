@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} DetailBook
+{% endblock title %}
+
+{% block body %}
+    <h1>Название книги: {{ object.name }} </h1><br>
+    <h1>Жанр книги: {{ object.genre }}</h1>
+    <h1>Описание книги: {{ object.description }}</h1><br>
+{% endblock body %}

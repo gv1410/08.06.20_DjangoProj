@@ -4,6 +4,7 @@ from .models import Genre, Book
 from .forms import CreateGenreForm, CreateBookForm
 import datetime
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView, TemplateView
+from django.urls import reverse_lazy
 # Create your views here.
 
 def test(request):
@@ -34,13 +35,13 @@ class CreateGenre(CreateView):
     model = Genre
     form_class = CreateGenreForm
     template_name = 'testapp/creategenre.html'
-    success_url = '/test'
+    success_url = '/listgenre'
 
 class CreateBook(CreateView):
     model = Book
     form_class = CreateBookForm
     template_name = 'testapp/createbook.html'
-    success_url = '/test'
+    success_url = '/listbook'
 
 #class GenreDetailView(DetailView):
 
@@ -50,7 +51,7 @@ class UpdateGenre(UpdateView):
     form_class = CreateGenreForm
     queryset = Genre.objects.all()
     template_name = 'testapp/creategenre.html'
-    success_url = '/test'
+    success_url = '/listgenre'
 
     def get_object(self):
         id_ = self.kwargs.get('id')
@@ -59,6 +60,7 @@ class UpdateGenre(UpdateView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return super().form_valid(form)
+
     
 class ListGenre(ListView):
     model = Genre
@@ -67,14 +69,14 @@ class ListGenre(ListView):
 class DeleteGenre(DeleteView):
     model = Genre
     template_name = 'testapp/deletegenre.html'
-    success_url = '/test'
+    success_url = '/listgenre'
 
 class UpdateBook(UpdateView):
     model = Book
     form_class = CreateBookForm
     queryset = Book.objects.all()
     template_name = 'testapp/createbook.html'
-    success_url = '/test'
+    success_url = '/listbook'
 
     def get_object(self):
         id_ = self.kwargs.get('id')
@@ -91,4 +93,12 @@ class ListBook(ListView):
 class DeleteBook(DeleteView):
     model = Book
     template_name = 'testapp/deletebook.html'
-    success_url = '/test'
+    success_url = '/listbook'
+
+class DetailBook(DetailView):
+    model = Book
+    template_name = 'testapp/detailbook.html'
+
+class DetailGenre(DetailView):
+    model = Genre
+    template_name = 'testapp/detailgenre.html'

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}DetailGenre
+{% endblock title %}
+
+{% block body %}
+    <h1>Название жанра: {{ object.name }} </h1><br>
+    
+    <h1>Описание жанра: {{ object.description }}</h1><br>
+{% endblock body %}
