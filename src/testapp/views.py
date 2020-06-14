@@ -3,8 +3,7 @@ from django.http import HttpResponse
 from .models import Genre, Book
 from .forms import CreateGenreForm, CreateBookForm
 import datetime
-from django.views.generic import TemplateView
-from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView
+from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView, TemplateView
 # Create your views here.
 
 def test(request):
@@ -19,7 +18,7 @@ def test(request):
     genre = Genre.objects.all()
     books = Book.objects.all()
 
-    context = {'genre': genre, 'books': books}
+    context = {'genre': genre, 'books': books} 
     return render(request, template_name='testapp/test.html', context= context)
 
 
@@ -30,6 +29,7 @@ class Test(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Test).get_context_data(**kwargs)
 '''
+
 class CreateGenre(CreateView):
     model = Genre
     form_class = CreateGenreForm
@@ -68,4 +68,27 @@ class DeleteGenre(DeleteView):
     model = Genre
     template_name = 'testapp/deletegenre.html'
     success_url = '/test'
+
+class UpdateBook(UpdateView):
+    model = Book
+    form_class = CreateBookForm
+    queryset = Book.objects.all()
+    template_name = 'testapp/createbook.html'
+    success_url = '/test'
+
+    def get_object(self):
+        id_ = self.kwargs.get('id')
+        return get_object_or_404(Book, id=id_)
     
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)
+
+class ListBook(ListView):
+    model = Book
+    template_name = 'testapp/listbook.html'
+
+class DeleteBook(DeleteView):
+    model = Book
+    template_name = 'testapp/deletebook.html'
+    success_url = '/test'
