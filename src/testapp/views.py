@@ -23,14 +23,6 @@ def test(request):
     return render(request, template_name='testapp/test.html', context= context)
 
 
-'''
-class Test(TemplateView):
-    template_name = 'testapp/test.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super(Test).get_context_data(**kwargs)
-'''
-
 class CreateGenre(CreateView):
     model = Genre
     form_class = CreateGenreForm
@@ -42,9 +34,6 @@ class CreateBook(CreateView):
     form_class = CreateBookForm
     template_name = 'testapp/createbook.html'
     success_url = '/listbook'
-
-#class GenreDetailView(DetailView):
-
 
 class UpdateGenre(UpdateView):
     model = Genre
