@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['gv1410.pythonanywhere.com'] #'gv1410.pythonanywhere.com'
 
-
 # Application definition
 
 INSTALLED_APPS = [
