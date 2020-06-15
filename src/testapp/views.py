@@ -90,4 +90,4 @@ class DetailBook(DetailView):
 
 class DetailGenre(DetailView):
     model = Genre
-    template_name = 'testapp/test.html' #'testapp/detailgenre.html', 'testapp/test.html'
+    template_name = 'testapp/detailgenre.html'
