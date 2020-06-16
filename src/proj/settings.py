@@ -25,7 +25,7 @@ SECRET_KEY = 'y*5e39*%jik6teb^)pk^rco0%%-&@4mo(!_fpa7x13u*@%3+ax'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gv1410.pythonanywhere.com'] #'gv1410.pythonanywhere.com'
+ALLOWED_HOSTS = [] #'gv1410.pythonanywhere.com'
 
 # Application definition
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'testapp',
 ]
 
@@ -127,3 +128,5 @@ STATIC_ROOT = '/home/gv1410/new_proj/static'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = '/home/gv1410/new_proj/media'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
