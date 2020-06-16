@@ -91,3 +91,12 @@ class DetailBook(DetailView):
 class DetailGenre(DetailView):
     model = Genre
     template_name = 'testapp/detailgenre.html'
+
+class HomepageList(ListView):
+    model = Book
+    template_name = 'testapp/homepage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['genre_list'] = Genre.objects.all()
+        return context

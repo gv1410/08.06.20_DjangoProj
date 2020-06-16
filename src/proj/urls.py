@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from testapp.views import test, CreateGenre, CreateBook, UpdateGenre, ListGenre, DeleteGenre, UpdateBook, ListBook, DeleteBook, DetailBook, DetailGenre
+from testapp.views import test, CreateGenre, CreateBook, UpdateGenre, ListGenre, DeleteGenre, UpdateBook, ListBook, DeleteBook, DetailBook, DetailGenre, HomepageList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +30,5 @@ urlpatterns = [
     path('<int:pk>/deletebook/', DeleteBook.as_view(), name='deletebook'),
     path('<int:pk>/detailbook/', DetailBook.as_view(), name='detailbook'),
     path('<int:pk>/detailgenre/', DetailGenre.as_view(), name='detailgenre'),
+    path('homepage/', HomepageList.as_view(), name ='homepage'),
 ]
