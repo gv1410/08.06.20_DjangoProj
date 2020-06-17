@@ -9,4 +9,4 @@ class CreateGenreForm(forms.ModelForm):
 class CreateBookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('name', 'description','genre')
+        fields = ('book_image', 'name', 'description','genre')
