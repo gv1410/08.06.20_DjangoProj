@@ -129,6 +129,6 @@ STATIC_ROOT = '/home/gv1410/new_proj/static'#'/home/gv_1514/Загрузки/new
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = '/home/gv1410/new_proj/static'#'/home/gv_1514/Загрузки/new_proj/media','/home/gv1410/new_proj/media'
+MEDIA_ROOT = '/home/gv1410/new_proj/media'#'/home/gv_1514/Загрузки/new_proj/media','/home/gv1410/new_proj/media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
