@@ -27,7 +27,7 @@ DEBUG = True
 
 #ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['gv1410.pythonanywhere.com/homepage']
+ALLOWED_HOSTS = ['gv1410.pythonanywhere.com']
 
 # Application definition
 
