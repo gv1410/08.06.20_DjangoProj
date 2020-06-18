@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from testapp.views import test, CreateGenre, CreateBook, UpdateGenre, ListGenre, DeleteGenre, UpdateBook, ListBook, DeleteBook, DetailBook, DetailGenre, HomepageList
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +33,4 @@ urlpatterns = [
     path('<int:pk>/detailbook/', DetailBook.as_view(), name='detailbook'),
     path('<int:pk>/detailgenre/', DetailGenre.as_view(), name='detailgenre'),
     path('homepage/', HomepageList.as_view(), name ='homepage'),
-]
+]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

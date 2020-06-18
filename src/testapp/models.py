@@ -26,7 +26,7 @@ class Book(models.Model):
         verbose_name='Изменено', auto_now=True, auto_now_add=False
         )
     book_image = models.ImageField(
-        verbose_name='Изображение книги', upload_to='media/', null=True, blank=True 
+        verbose_name='Изображение книги', upload_to='profile', null=True, blank=True 
         )
     
     def __str__(self):
