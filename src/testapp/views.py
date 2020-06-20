@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Genre, Book
-from .forms import CreateGenreForm, CreateBookForm
+from .forms import CreateGenreForm, CreateBookForm, AuthUserForm, RegisterUserForm
 import datetime
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView, TemplateView
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+import os
+
 # Create your views here.
 
 def test(request):
@@ -100,3 +105,38 @@ class HomepageList(ListView):
         context = super().get_context_data(**kwargs)
         context['genre_list'] = Genre.objects.all()
         return context
+
+class UserLoginView(LoginView):
+    template_name = 'testapp/login.html'
+    form_class = AuthUserForm
+    success_url = '/homepage'
+
+    def get_success_url(self):
+        return self.success_url
+
+class UserRegistrView(CreateView):
+    model = User
+    form_class = RegisterUserForm
+    template_name = 'testapp/userregister.html'
+    success_url = '/homepage'
+    success_msg = 'Пользователь успешно создан'
+
+    def form_valid(self, form):
+        form_valid = super().form_valid(form)
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        aut_user = authenticate(username = username, password = password)
+        login(self.request, aut_user)
+        return form_valid
+
+
+class UserLogOutView(LogoutView):
+    next_page = '/homepage'
+
+
+    
+
+
+
+
+    
