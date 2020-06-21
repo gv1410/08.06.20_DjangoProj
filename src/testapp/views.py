@@ -133,7 +133,10 @@ class UserRegistrView(CreateView):
 class UserLogOutView(LogoutView):
     next_page = '/homepage'
 
-
+def homepage(request):
+    template = 'testapp/homepage.html'
+    context = {}
+    return render(request, template, context)
     
 
 

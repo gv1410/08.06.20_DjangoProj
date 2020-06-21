@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from testapp.views import test, UserLogOutView, UserRegistrView, UserLoginView, CreateGenre, CreateBook, UpdateGenre, ListGenre, DeleteGenre, UpdateBook, ListBook, DeleteBook, DetailBook, DetailGenre, HomepageList
+from testapp.views import homepage, test, UserLogOutView, UserRegistrView, UserLoginView, CreateGenre, CreateBook, UpdateGenre, ListGenre, DeleteGenre, UpdateBook, ListBook, DeleteBook, DetailBook, DetailGenre, HomepageList
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -36,4 +36,5 @@ urlpatterns = [
     path('login/', UserLoginView.as_view(), name ='login'),
     path('register/', UserRegistrView.as_view(), name ='register'),
     path('logout/', UserLogOutView.as_view(), name ='logout'),
+    path('', homepage, name ='home'),
 ]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
