@@ -148,5 +148,6 @@ class ListWriter(ListView):
     model = Writer
     template_name = 'testapp/listwriter.html'
 
-
-    
+class DetailWriter(DetailView):
+    model = Writer
+    template_name = 'testapp/detailwriter.html'

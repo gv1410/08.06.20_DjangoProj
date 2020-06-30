@@ -48,9 +48,9 @@
   <body>
     <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#"> {% if request.user.is_authenticated %} Вы вошли под именем: {{request.user}}
+    <a class="navbar-brand" href="#"> {% if request.user.is_authenticated %} <h6>Вы вошли под именем: {{request.user}}</h6>
     {% else %}
-    Пожалуйста зарегистрируйтесь или войдите в систему
+    <h6>Пожалуйста зарегистрируйтесь или войдите в систему</h6>
     {% endif %} </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
