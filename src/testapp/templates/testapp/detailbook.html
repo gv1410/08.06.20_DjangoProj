@@ -17,9 +17,10 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{ object.name }}</h5>
-              <p class="card-text">{{ object.genre }}</p>
-              <p class="card-text">{{ object.description }}</p>
+              <h5 class="card-title"> Название книги: {{ object.name }}</h5>
+              <p class="card-text"> Жанр книги: {{ object.genre }}</p>
+              <p class="card-text"> Описание книги: {{ object.description }}</p>
+              <p class="card-text"> Авторы книги: {{object.writer.all|join:', '}}</p>
               <p class="card-text"><small class="text-muted">{{ object.updated }}</small></p>
             </div>
           </div>

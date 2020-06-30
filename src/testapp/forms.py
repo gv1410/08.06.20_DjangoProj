@@ -1,7 +1,12 @@
 from django import forms
-from .models import Genre, Book
+from .models import Genre, Book, Writer
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
+
+class CreateWriterForm(forms.ModelForm):
+    class Meta:
+        model = Writer
+        fields = ('name',)
 
 class CreateGenreForm(forms.ModelForm):
     class Meta:
@@ -11,7 +16,7 @@ class CreateGenreForm(forms.ModelForm):
 class CreateBookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('book_image', 'name', 'description','genre')
+        fields = ('book_image', 'name', 'description','genre', 'writer')
 
 class AuthUserForm(AuthenticationForm, forms.ModelForm):
     class Meta:

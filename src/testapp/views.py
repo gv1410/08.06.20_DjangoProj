@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Genre, Book
-from .forms import CreateGenreForm, CreateBookForm, AuthUserForm, RegisterUserForm
+from .models import Genre, Book, Writer
+from .forms import CreateGenreForm, CreateBookForm, AuthUserForm, RegisterUserForm, CreateWriterForm
 import datetime
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView, TemplateView
 from django.urls import reverse_lazy
@@ -138,8 +138,15 @@ def homepage(request):
     context = {}
     return render(request, template, context)
     
+class CreateWriter(CreateView):
+    model = Writer
+    form_class = CreateWriterForm
+    template_name = 'testapp/createwriter.html'
+    success_url = '/listwriter'
 
-
+class ListWriter(ListView):
+    model = Writer
+    template_name = 'testapp/listwriter.html'
 
 
     

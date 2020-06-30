@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Автор книги
+{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+<h1>Create Writer</h1>
+</div>
+
+<div class="container">
+<form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" class="btn btn-primary" value="Создать">
+</form>
+</div>  
+{% endblock body %}
+   
+    
+

@@ -2,6 +2,12 @@ from django.db import models
 
 # Create your models here.
 
+class Writer(models.Model):
+    name = models.CharField(verbose_name='ФИО Автора', max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class Genre(models.Model):
     name = models.CharField(verbose_name='Название жанра', max_length=100)
     description = models.TextField(verbose_name='Описание жанра', null=True, blank=True)
@@ -17,8 +23,10 @@ class Book(models.Model):
         verbose_name='Описание Книги', null=True, blank=True
         )
     genre = models.ForeignKey(
-        Genre, on_delete=models.PROTECT, verbose_name='Жанр Книги'
+        Genre, on_delete=models.PROTECT, verbose_name='Жанр Книги',
         )
+    writer = models.ManyToManyField(
+        Writer)
     created = models.DateField(
         verbose_name='Создано', auto_now=False, auto_now_add=True
         )
@@ -31,3 +39,4 @@ class Book(models.Model):
     
     def __str__(self):
         return self.name
+
