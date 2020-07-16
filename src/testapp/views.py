@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Genre, Book, Writer
-from .forms import CreateGenreForm, CreateBookForm, AuthUserForm, RegisterUserForm, CreateWriterForm
+from .models import *
+from .forms import * 
 import datetime
 from django.views.generic import CreateView, UpdateView, DetailView, ListView, DeleteView, TemplateView
 from django.urls import reverse_lazy
@@ -9,6 +9,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 import os
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 # Create your views here.
 
@@ -84,6 +86,12 @@ class ListBook(ListView):
     model = Book
     template_name = 'testapp/listbook.html'
 
+    def get_context_data(self, **kwargs):
+        key1 = self.request.GET.get('key1')
+        c = super().get_context_data(**kwargs)
+        c['key1'] = key1
+        return c
+
 class DeleteBook(DeleteView):
     model = Book
     template_name = 'testapp/deletebook.html'
@@ -100,6 +108,7 @@ class DetailGenre(DetailView):
 class HomepageList(ListView):
     model = Book
     template_name = 'testapp/homepage.html'
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -125,7 +134,10 @@ class UserRegistrView(CreateView):
         form_valid = super().form_valid(form)
         username = form.cleaned_data['username']
         password = form.cleaned_data['password']
-        aut_user = authenticate(username = username, password = password)
+        aut_user = authenticate(
+            username = username, 
+            password = password, 
+            )
         login(self.request, aut_user)
         return form_valid
 
@@ -151,3 +163,21 @@ class ListWriter(ListView):
 class DetailWriter(DetailView):
     model = Writer
     template_name = 'testapp/detailwriter.html'
+
+class ProfileUpdate(UpdateView):
+    model = Profile
+    fields = (
+        'user', 'phone_number', 
+        'home_address', 'country', 'city', 'index', 
+        'home_address_2', 'home_address_3', 'first_name',
+        )
+    template_name = 'testapp/updateprofile.html'
+    success_url = '/updateprofile'
+
+    def get_object(self):
+        user_pk = self.kwargs.get('user_pk')
+        obj, created = self.model.objects.get_or_create(
+             user = User.objects.get(pk=user_pk), 
+             defaults = {}
+        )
+

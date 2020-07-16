@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}ListBook
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+<h1>Добавить товар {{ object.book }}</h1>
+
+<form action="#" method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Добавить</button>
+</form>
+
+</div>
+{% endblock body %}

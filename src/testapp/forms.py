@@ -1,5 +1,5 @@
 from django import forms
-from .models import Genre, Book, Writer
+from .models import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 
@@ -34,3 +34,4 @@ class RegisterUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
