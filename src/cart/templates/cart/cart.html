@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Cart Detail
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+<h1>Содержимое корзины: </h1>
+
+{{object.books.all}}
+
+<table class="table">
+
+    <tr>
+        <th>Название Книги</th>
+        <th>Количество для заказа</th>
+        <th>Цена книги</th>
+        <th>Итоговая цена</th>
+        <th>#</th>
+    </tr>
+
+{% for product_in_cart in object.books.all %}
+    <tr>
+        <td>{{ product_in_cart.book.name }}</td>
+        <td>{{ product_in_cart.quantity }}</td>
+        <td>{{ product_in_cart.book.price }}</td>
+        <td>{{ product_in_cart.price }}</td>
+        <td>
+            <a href="{% url 'cart:delete' product_in_cart.pk %}">Delete</a>
+            <a href="{% url 'cart:add' %}?book_pk={{product_in_cart.book.pk}}">Edit</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+<b>Сумма заказа: </b>{{object.total_price}}
+</div>
+{% endblock body %}
