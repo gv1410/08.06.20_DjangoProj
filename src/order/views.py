@@ -46,8 +46,6 @@ class CreateOrder(UpdateView):
             b.quantity_in_stok = i.book.quantity_in_stok
             b.save()
 
-        
-        
         self.object.save()
         del(self.request.session['cart_pk'])
         return url

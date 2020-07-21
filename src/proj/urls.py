@@ -43,4 +43,4 @@ urlpatterns = [
     path('updateprofile/<int:user_pk>', ProfileUpdate.as_view(), name ='updateprofile'),
     path('checkout/', include('cart.urls', namespace='cart')),
     path('order/', include('order.urls', namespace='order')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
