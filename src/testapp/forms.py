@@ -16,7 +16,7 @@ class CreateGenreForm(forms.ModelForm):
 class CreateBookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('book_image', 'name', 'description','genre', 'writer')
+        fields = ('book_image', 'name', 'description','genre', 'writer', 'price', 'quantity_in_stok')
 
 class AuthUserForm(AuthenticationForm, forms.ModelForm):
     class Meta:
