@@ -34,6 +34,7 @@
     </tr>
 {% endfor %}
 </table>
-<b>Сумма заказа: </b>{{object.total_price}}
+<b>Сумма заказа: </b>{{object.total_price}} <br>
+<a href="{% url 'order:create' %}" class="btn btn-success"> Оформить заказ</a>
 </div>
 {% endblock body %}

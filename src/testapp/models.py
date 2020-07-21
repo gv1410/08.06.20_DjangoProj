@@ -49,6 +49,7 @@ class Book(models.Model):
     
     category = models.CharField(verbose_name='Статус', null=True, max_length=25, choices=CATEGORY)
 
+    quantity_in_stok = models.IntegerField(verbose_name='Количество на складе', max_length=3)
     
     def __str__(self):
         return self.name
@@ -65,15 +66,3 @@ class Profile(models.Model):
     
     def __str__(self):
         return f'{self.user.username}'
-
-class Order(models.Model):
-    STATUS = (
-        ('В ожидании', 'В ожидании'),
-        ('Недоступен для заказа', 'Недоступен для заказа'),
-        ('Доставлен', 'Доставлен')
-    )
-
-    customer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    product = models.ForeignKey(Book, null=True, on_delete=models.SET_NULL)
-    date_created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания заказ')
-    status = models.CharField(max_length=200, null=True, choices=STATUS)
