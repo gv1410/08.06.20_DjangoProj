@@ -42,7 +42,10 @@
           <h6><p class="card-text">{{ obj.genre }}</p></h6>
           <h5><p class="card-text">{{ obj.description }}</p></h5>
           <h6><p class="card-text text-muted">{{ obj.writer.all|join:', ' }}</p></h6>
+          <h6><p class="card-text text-danger">На складе: {{ obj.quantity_in_stok}} шт.</p></h6>
+          <h6><p class="card-text text-danger">Цена: {{ obj.price }} BYN</p></h6>
           <a href="/{{obj.pk}}/detailbook/" class="btn btn-primary">Обзор</a>
+          <a href="{% url 'cart:add' %}?book_pk={{ obj.pk }}" class='btn btn-primary'>Заказать сейчас</a>
           {% if request.user.is_authenticated  %}
           <a href="/{{obj.pk}}/updatebook/" class="btn btn-success">Редактировать</a>
           <a href="/{{obj.pk}}/deletebook/" class="btn btn-danger">Удалить</a>
