@@ -25,9 +25,9 @@ SECRET_KEY = 'y*5e39*%jik6teb^)pk^rco0%%-&@4mo(!_fpa7x13u*@%3+ax'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['gv1410.pythonanywhere.com']
+#ALLOWED_HOSTS = ['gv1410.pythonanywhere.com']
 
 # Application definition
 
@@ -130,14 +130,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#STATIC_ROOT = '/home/gv_1514/Загрузки/new_proj/static'
+STATIC_ROOT = '/home/gv_1514/Загрузки/new_proj/static'
 
-STATIC_ROOT = '/home/gv1410/new_proj/static'
+#STATIC_ROOT = '/home/gv1410/new_proj/static'
 
 MEDIA_URL = '/media/'
 
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_ROOT = '/home/gv1410/new_proj/media'
+#MEDIA_ROOT = '/home/gv1410/new_proj/media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

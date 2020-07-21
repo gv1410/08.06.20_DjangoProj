@@ -48,7 +48,11 @@
             </a><br>
             </td>
             <td>
+            {% if obj.quantity_in_stok == 0 %}
+                <a href="/listbook/" class='text-danger'>Нет на складе</a>
+            {% else %}
                 <a href="{% url 'cart:add' %}?book_pk={{ obj.pk }}">Заказ книги</a>
+            {% endif %}
             </td>
         </tr>
         {% endfor %}

@@ -92,6 +92,8 @@ class ListBook(ListView):
         c['key1'] = key1
         return c
 
+    
+
 class DeleteBook(DeleteView):
     model = Book
     template_name = 'testapp/deletebook.html'
