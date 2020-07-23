@@ -11,7 +11,8 @@ from django.contrib.auth import authenticate, login
 import os
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from cart.models import BookInCart
 # Create your views here.
 
 def test(request):
@@ -92,7 +93,6 @@ class ListBook(ListView):
         c['key1'] = key1
         return c
 
-    
 
 class DeleteBook(DeleteView):
     model = Book
@@ -116,6 +116,27 @@ class HomepageList(ListView):
         context = super().get_context_data(**kwargs)
         context['genre_list'] = Genre.objects.all()
         return context
+
+
+def homepage(request):
+    template = 'testapp/homepage.html'
+    context = {}
+    return render(request, template, context)
+    
+class CreateWriter(CreateView):
+    model = Writer
+    form_class = CreateWriterForm
+    template_name = 'testapp/createwriter.html'
+    success_url = '/listwriter'
+
+class ListWriter(ListView):
+    model = Writer
+    template_name = 'testapp/listwriter.html'
+
+class DetailWriter(DetailView):
+    model = Writer
+    template_name = 'testapp/detailwriter.html'
+
 
 class UserLoginView(LoginView):
     template_name = 'testapp/login.html'
@@ -147,39 +168,10 @@ class UserRegistrView(CreateView):
 class UserLogOutView(LogoutView):
     next_page = '/homepage'
 
-def homepage(request):
-    template = 'testapp/homepage.html'
-    context = {}
-    return render(request, template, context)
-    
-class CreateWriter(CreateView):
-    model = Writer
-    form_class = CreateWriterForm
-    template_name = 'testapp/createwriter.html'
-    success_url = '/listwriter'
+class UserFormView(TemplateView):
+    template_name = 'testapp/userdetail.html'
 
-class ListWriter(ListView):
-    model = Writer
-    template_name = 'testapp/listwriter.html'
 
-class DetailWriter(DetailView):
-    model = Writer
-    template_name = 'testapp/detailwriter.html'
 
-class ProfileUpdate(UpdateView):
-    model = Profile
-    fields = (
-        'user', 'phone_number', 
-        'home_address', 'country', 'city', 'index', 
-        'home_address_2', 'home_address_3', 'first_name',
-        )
-    template_name = 'testapp/updateprofile.html'
-    success_url = '/updateprofile'
 
-    def get_object(self):
-        user_pk = self.kwargs.get('user_pk')
-        obj, created = self.model.objects.get_or_create(
-             user = User.objects.get(pk=user_pk), 
-             defaults = {}
-        )
 

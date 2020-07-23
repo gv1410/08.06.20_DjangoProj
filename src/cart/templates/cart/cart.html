@@ -9,8 +9,6 @@
 <div class="container">
 <h1>Содержимое корзины: </h1>
 
-{{object.books.all}}
-
 <table class="table">
 
     <tr>
@@ -35,6 +33,11 @@
 {% endfor %}
 </table>
 <b>Сумма заказа: </b>{{object.total_price}} <br>
+{% if object.total_price == 0  %}
+<a href="/listbook/" class="btn btn-danger"> Выбрать книгу</a>
+{% else %}
 <a href="{% url 'order:create' %}" class="btn btn-success"> Оформить заказ</a>
+<a href="/listbook/" class="btn btn-primary"> Добавить в корзину</a>
+{% endif %}
 </div>
 {% endblock body %}

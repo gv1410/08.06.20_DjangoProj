@@ -6,5 +6,5 @@ from .models import *
 admin.site.register(Genre)
 admin.site.register(Book)
 admin.site.register(Writer)
-admin.site.register(Profile)
+
 

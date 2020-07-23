@@ -9,6 +9,35 @@
 <div class="container">
 <h1>Оформить заказ? {{object}}</h1>
 
+<h1>Содержимое заказа: </h1>
+
+{{object.books.all}}
+
+<table class="table">
+
+    <tr>
+        <th>Название Книги</th>
+        <th>Количество для заказа</th>
+        <th>Цена книги</th>
+        <th>Итоговая цена</th>
+        <th>#</th>
+    </tr>
+
+{% for product_in_cart in object.cart.books.all %}
+    <tr>
+        <td>{{ product_in_cart.book.name }}</td>
+        <td>{{ product_in_cart.quantity }}</td>
+        <td>{{ product_in_cart.book.price }}</td>
+        <td>{{ product_in_cart.price }}</td>
+        <td>
+            <a href="{% url 'cart:delete' product_in_cart.pk %}">Delete</a>
+            <a href="{% url 'cart:add' %}?book_pk={{product_in_cart.book.pk}}">Edit</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+<b>Сумма заказа: </b>{{object.total_price}} <br>
+
 <form action="#" method="POST">
     {% csrf_token %}
     {{ form|crispy }}

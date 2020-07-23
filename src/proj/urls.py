@@ -19,6 +19,7 @@ from testapp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', test),
@@ -40,7 +41,8 @@ urlpatterns = [
     path('createwriter/', CreateWriter.as_view(), name ='createwriter'),
     path('listwriter/', ListWriter.as_view(), name ='listwriter'),
     path('<int:pk>/detailwriter/', DetailWriter.as_view(), name='detailwriter'),
-    path('updateprofile/<int:user_pk>', ProfileUpdate.as_view(), name ='updateprofile'),
     path('checkout/', include('cart.urls', namespace='cart')),
     path('order/', include('order.urls', namespace='order')),
-]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('<str:username>/userdetail/', UserFormView.as_view(), name='userdetail'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

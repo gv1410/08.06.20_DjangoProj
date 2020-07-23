@@ -2,6 +2,7 @@ from django import forms
 from .models import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
+from userprofile.models import UserProfile
 
 class CreateWriterForm(forms.ModelForm):
     class Meta:
@@ -26,7 +27,7 @@ class AuthUserForm(AuthenticationForm, forms.ModelForm):
 class RegisterUserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('username', 'password', 'first_name', 'last_name', 'email')
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -35,3 +36,7 @@ class RegisterUserForm(forms.ModelForm):
             user.save()
         return user
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
