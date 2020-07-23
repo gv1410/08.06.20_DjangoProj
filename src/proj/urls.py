@@ -45,4 +45,4 @@ urlpatterns = [
     path('order/', include('order.urls', namespace='order')),
     path('<str:username>/userdetail/', UserFormView.as_view(), name='userdetail'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
