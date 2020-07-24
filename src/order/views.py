@@ -38,16 +38,15 @@ class CreateOrder(UpdateView):
         url = super().get_success_url()
         self.object.status = True
         
-        
         for i in self.object.cart.books.all():
             b = Book.objects.get(name = i.book.name)
             i.book.quantity_in_stok = (i.book.quantity_in_stok - i.quantity)
             i.book.quantity_in_stok
             b.quantity_in_stok = i.book.quantity_in_stok
             b.save()
-
-       
-        self.object.save()#
-        del(self.request.session['cart_pk'])#
-        return url#
+        
+        
+        self.object.save()
+        del(self.request.session['cart_pk'])
+        return url
 

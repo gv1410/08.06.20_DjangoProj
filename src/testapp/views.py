@@ -12,7 +12,9 @@ import os
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.contrib.auth.mixins import LoginRequiredMixin
-from cart.models import BookInCart
+from cart.models import BookInCart, Cart
+from order.models import Order
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 def test(request):
@@ -27,10 +29,22 @@ def test(request):
     genre = Genre.objects.all()
     books = Book.objects.all()
 
-    context = {'genre': genre, 'books': books} 
+    login = request.user
+    
+        
+    books_in_cart = BookInCart.objects.all()
+
+    context = {'genre': genre, 'books': books, 'user': user, 'books_in_cart': books_in_cart} 
     return render(request, template_name='testapp/test.html', context= context)
 
-
+def userdetail(request):
+    login = request.user
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    email = request.user.email
+    books_in_cart = BookInCart.objects.all()
+    context = {'login': login, 'first_name': first_name, 'last_name':last_name, 'email':email, 'books_in_cart': books_in_cart}
+    return render(request, template_name='testapp/userdetail.html', context=context)
 class CreateGenre(CreateView):
     model = Genre
     form_class = CreateGenreForm
@@ -168,8 +182,7 @@ class UserRegistrView(CreateView):
 class UserLogOutView(LogoutView):
     next_page = '/homepage'
 
-class UserFormView(TemplateView):
-    template_name = 'testapp/userdetail.html'
+
 
 
 

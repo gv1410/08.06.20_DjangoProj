@@ -43,6 +43,6 @@ urlpatterns = [
     path('<int:pk>/detailwriter/', DetailWriter.as_view(), name='detailwriter'),
     path('checkout/', include('cart.urls', namespace='cart')),
     path('order/', include('order.urls', namespace='order')),
-    path('<str:username>/userdetail/', UserFormView.as_view(), name='userdetail'),
+    path('userdetail/', userdetail),
 
-]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

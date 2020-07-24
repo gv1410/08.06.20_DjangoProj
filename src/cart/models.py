@@ -25,6 +25,10 @@ class Cart(models.Model):
 
 
 class BookInCart(models.Model):
+    CATEGORY = (
+        ('Ожидает подтверждения', 'Ожидает подтверждения'),
+        ('Заказан', 'Заказан')
+    )
     cart = models.ForeignKey(
         Cart,
         on_delete=models.CASCADE,
@@ -39,6 +43,12 @@ class BookInCart(models.Model):
         verbose_name='Qantity',
         default=1
     )
+    created = models.DateTimeField(
+        "Created",
+        auto_now=False,
+        auto_now_add=True
+    )
+    status = models.CharField(verbose_name='Статус', null=False, max_length=25, choices=CATEGORY, default='Ожидает подтверждения')
     def __str__(self):
         return f'Book #{self.book.pk} in cart #{self.cart.pk}'
     

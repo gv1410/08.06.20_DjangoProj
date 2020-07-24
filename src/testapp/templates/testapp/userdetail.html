@@ -15,15 +15,34 @@
         <div class="row no-gutters">
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title"> Логин пользователя :{{request.user}}</h5>
-              <p class="card-text"> Имя пользователя :{{request.user.first_name}}</p>
-              <p class="card-text"> Фамилия пользователя: {{request.user.last_name}}</p>
-              <p class="card-text"> Почта пользователя: {{request.user.email}}</p>
+              <h5 class="card-title"> Логин пользователя :{{user}}</h5>
+              <p class="card-text"> Имя пользователя :{{first_name}}</p>
+              <p class="card-text"> Фамилия пользователя: {{last_name}}</p>
+              <p class="card-text"> Почта пользователя: {{user.email}}</p>
               
             </div>
           </div>
         </div>
       </div>
 
+     <h1>Список заказанных товаров</h1>
+     <table class="table">
+     <thead class="thead-dark">
+     <tr>
+     <th>Количество</th><th>Имя заказчика</th><th>Книги</th><th>Создан</th>
+     </tr>
+     </thead>
+     {% for books_in_cart in books_in_cart  %}
+        <tr>
+        {% if request.user == books_in_cart.cart.user %}
+            <td>{{books_in_cart.quantity}}</td>
+            <td>{{books_in_cart.cart.user}}</td>
+            <td>{{books_in_cart.book}}</td>
+            <td>{{books_in_cart.created}}</td>
+        {% endif %}
+        </tr>
+     {% endfor %}
+     
+     </table>
 </div>
 {% endblock body %}
