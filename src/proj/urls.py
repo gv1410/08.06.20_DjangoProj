@@ -45,4 +45,4 @@ urlpatterns = [
     path('order/', include('order.urls', namespace='order')),
     path('userdetail/', userdetail),
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]#+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
